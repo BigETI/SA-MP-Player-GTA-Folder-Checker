@@ -1,6 +1,6 @@
 # SA-MP player GTA folder checker
 
-This is a simple system which allow server admins/players to watch each other players gta folder files incase the chose player has a simple 14kb .exe file runned.
+This is a simple system which allow server admins/players to watch each other players gta folder files incase the chose player has a simple 17kb .exe file runned.
 
 User Running the application:
 
