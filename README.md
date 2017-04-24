@@ -6,9 +6,13 @@ User Running the application:
 
 ![alt tag](http://uupload.ir/files/sn4r_bandicam_2017-04-24_13-09-31-783.jpg)
 
-Administrator Checking Files:
+Administrator Checking Files [ /getfiles ]:
 
 ![alt tag](http://uupload.ir/files/gwke_sa-mp-086.png)
+
+Administrator Checking Folder Informations ( edit / create dates ) [ /dirinfo ]:
+
+![alt tag](http://uupload.ir/files/1db_sa-mp-090.png)
 
 It's better to keep this system as filterscript and use some pvars to get administrator level....
 
