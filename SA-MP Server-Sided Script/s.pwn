@@ -4,7 +4,9 @@
 
 #define MAX_TCP_FILES 300
 #define MAX_TCP_FILE_NAME 32
-#undef MAX_PLAYERS
+#if defined MAX_PLAYERS
+  #undef MAX_PLAYERS
+#endif
 #define MAX_PLAYERS 100
 #define MAX_DIRECTORY_SYMBOLS 100
 #define MAX_TCP_NAME MAX_PLAYER_NAME
