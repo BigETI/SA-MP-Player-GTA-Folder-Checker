@@ -1,0 +1,6 @@
+c:\users\professor\documents\visual studio 2015\Projects\BTTDM Cleo Checker\BTTDM Cleo Checker\bin\Debug\BTTDM Cleo Checker.exe.config
+c:\users\professor\documents\visual studio 2015\Projects\BTTDM Cleo Checker\BTTDM Cleo Checker\bin\Debug\BTTDM Cleo Checker.exe
+c:\users\professor\documents\visual studio 2015\Projects\BTTDM Cleo Checker\BTTDM Cleo Checker\bin\Debug\BTTDM Cleo Checker.pdb
+c:\users\professor\documents\visual studio 2015\Projects\BTTDM Cleo Checker\BTTDM Cleo Checker\obj\Debug\BTTDM Cleo Checker.csprojResolveAssemblyReference.cache
+c:\users\professor\documents\visual studio 2015\Projects\BTTDM Cleo Checker\BTTDM Cleo Checker\obj\Debug\BTTDM Cleo Checker.exe
+c:\users\professor\documents\visual studio 2015\Projects\BTTDM Cleo Checker\BTTDM Cleo Checker\obj\Debug\BTTDM Cleo Checker.pdb

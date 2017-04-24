@@ -1,0 +1,6 @@
+C:\Users\Professor\Documents\Visual Studio 2015\Projects\BTTDM Cleo Checker\BTTDM Cleo Checker\bin\Release\SAMP Player Folder Browser.exe.config
+C:\Users\Professor\Documents\Visual Studio 2015\Projects\BTTDM Cleo Checker\BTTDM Cleo Checker\bin\Release\SAMP Player Folder Browser.exe
+C:\Users\Professor\Documents\Visual Studio 2015\Projects\BTTDM Cleo Checker\BTTDM Cleo Checker\bin\Release\SAMP Player Folder Browser.pdb
+C:\Users\Professor\Documents\Visual Studio 2015\Projects\BTTDM Cleo Checker\BTTDM Cleo Checker\obj\Release\SAMP Player Folder Browser.csprojResolveAssemblyReference.cache
+C:\Users\Professor\Documents\Visual Studio 2015\Projects\BTTDM Cleo Checker\BTTDM Cleo Checker\obj\Release\SAMP Player Folder Browser.exe
+C:\Users\Professor\Documents\Visual Studio 2015\Projects\BTTDM Cleo Checker\BTTDM Cleo Checker\obj\Release\SAMP Player Folder Browser.pdb
