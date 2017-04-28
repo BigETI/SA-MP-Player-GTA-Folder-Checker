@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,103 +43,109 @@ namespace SAMP_Player_Folder_Browser
         }
         static private void ReadSendData()
         {
-            bool found = false;
-            Process[] proc = Process.GetProcesses();
-            foreach (Process proc2 in proc)
+            try
             {
-                if (proc2.ProcessName.Contains("gta_sa"))
+                bool found = false;
+                Process[] proc = Process.GetProcesses();
+                foreach (Process proc2 in proc)
                 {
-                    found = true;
-                    gamedirectory = Path.GetDirectoryName(proc2.MainModule.FileName);
-                    string filename = @"C:\Users\" + Environment.UserName + @"\Documents\GTA San Andreas User Files\SAMP\chatlog.txt";
-                    FileInfo myfile = new FileInfo(filename);
-                    if (myfile.LastWriteTime.Year >= proc2.StartTime.Year
-                        && myfile.LastWriteTime.Month >= proc2.StartTime.Month
-                        && myfile.LastWriteTime.Day >= proc2.StartTime.Day
-                    )
+                    if (proc2.ProcessName.Contains("gta_sa"))
                     {
-                        if (myfile.LastWriteTime.Hour >= proc2.StartTime.Hour)
+                        found = true;
+                        gamedirectory = Path.GetDirectoryName(proc2.MainModule.FileName);
+                        string filename = @"C:\Users\" + Environment.UserName + @"\Documents\GTA San Andreas User Files\SAMP\chatlog.txt";
+                        FileInfo myfile = new FileInfo(filename);
+                        if (myfile.LastWriteTime.Year >= proc2.StartTime.Year
+                            && myfile.LastWriteTime.Month >= proc2.StartTime.Month
+                            && myfile.LastWriteTime.Day >= proc2.StartTime.Day
+                        )
                         {
-                            if (myfile.LastWriteTime.Minute >= proc2.StartTime.Minute)
+                            if (myfile.LastWriteTime.Hour >= proc2.StartTime.Hour)
                             {
-                                if (myfile.LastWriteTime.Second >= proc2.StartTime.Second)
+                                if (myfile.LastWriteTime.Minute >= proc2.StartTime.Minute)
                                 {
-                                    initilized = true;
+                                    if (myfile.LastWriteTime.Second >= proc2.StartTime.Second)
+                                    {
+                                        initilized = true;
+                                    }
+                                    else
+                                    {
+                                        if (myfile.LastWriteTime.Minute > proc2.StartTime.Minute)
+                                        {
+                                            initilized = true;
+                                        }
+                                        else
+                                        {
+                                            Console.WriteLine("Samp didn't initilize yet, did it?");
+                                            return;
+                                        }
+                                    }
                                 }
                                 else
                                 {
-                                    if (myfile.LastWriteTime.Minute > proc2.StartTime.Minute)
+                                    if (myfile.LastWriteTime.Hour > proc2.StartTime.Hour)
                                     {
                                         initilized = true;
                                     }
                                     else
                                     {
                                         Console.WriteLine("Samp didn't initilize yet, did it?");
+                                        return;
                                     }
                                 }
                             }
                             else
                             {
-                                if (myfile.LastWriteTime.Hour > proc2.StartTime.Hour)
+                                if (myfile.LastWriteTime.Day > proc2.StartTime.Day)
                                 {
                                     initilized = true;
                                 }
                                 else
                                 {
                                     Console.WriteLine("Samp didn't initilize yet, did it?");
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (myfile.LastWriteTime.Day > proc2.StartTime.Day)
-                            {
-                                initilized = true;
-                            }
-                            else
-                            {
-                                Console.WriteLine("Samp didn't initilize yet, did it?");
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Samp didn't initilize yet, did it?");
-                    }
-                    if (File.Exists(filename))
-                    {
-                        string[] content = File.ReadAllLines(filename);
-                        if(content.Length > 2)
-                        {
-                            if (content[2] != null)
-                            {
-                                int where = content[2].IndexOf("Connecting to");
-                                if (where != -1)
-                                {
-                                    content[2] = content[2].Remove(0, where + 14);
-                                    where = content[2].LastIndexOf(".");
-                                    content[2] = content[2].Remove(where - 2, 3);
-                                    string[] details = content[2].Split(':');
-                                    serverip = details[0];
-                                    serverport = int.Parse(details[1]);
+                                    return;
                                 }
                             }
                         }
                         else
                         {
                             Console.WriteLine("Samp didn't initilize yet, did it?");
+                            return;
+                        }
+                        if (File.Exists(filename))
+                        {
+                            string[] content = File.ReadAllLines(filename);
+                            if (content.Length > 2)
+                            {
+                                if (content[2] != null)
+                                {
+                                    int where = content[2].IndexOf("Connecting to");
+                                    if (where != -1)
+                                    {
+                                        content[2] = content[2].Remove(0, where + 14);
+                                        where = content[2].LastIndexOf(".");
+                                        content[2] = content[2].Remove(where - 2, 3);
+                                        string[] details = content[2].Split(':');
+                                        serverip = details[0];
+                                        serverport = int.Parse(details[1]);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Samp didn't initilize yet, did it?");
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Samp didn't initilize yet, did it?");
+                            return;
                         }
                     }
-                    else
-                    {
-                        Console.WriteLine("Samp didn't initilize yet, did it?");
-                    }
                 }
-            }
-            if(initilized)
-            {
-                try
-                { 
+                if (initilized)
+                {
                     tcpclient = new TcpClient(serverip, serverport + 55621);
                     if (tcpclient.Connected)
                     {
@@ -155,19 +161,23 @@ namespace SAMP_Player_Folder_Browser
                             {
                                 object value = Registry.GetValue(Registry.Users + @"\" + key + @"\SOFTWARE\SAMP", "PlayerName", null);
                                 userName = value.ToString();
-                                if(userName.Length < 3)
+                                if (userName.Length < 3)
                                 {
-                                    Console.WriteLine("Incorrect username, is " + userName +" your username?");
+                                    Console.WriteLine("Incorrect username, is " + userName + " your username?");
                                     tcpclient.GetStream().Close();
                                     tcpclient.Close();
                                     return;
+                                }
+                                else
+                                {
+                                    break;
                                 }
                             }
                         }
                         Query sampquery = new Query(serverip, serverport);
                         sampquery.Send('p');
                         int count = sampquery.Receive();
-                        if(count > 0)
+                        if (count > 0)
                         {
                             int sevrerping;
                             string[] serverdetials = sampquery.Store(count);
@@ -175,12 +185,12 @@ namespace SAMP_Player_Folder_Browser
                             sampquery.Send('i');
                             count = sampquery.Receive();
                             serverdetials = sampquery.Store(count);
-                            if(count > 0)
+                            if (count > 0)
                             {
                                 Console.WriteLine("Successfully connected to ** " + serverdetials[3] + " ** Server - Ping: " + sevrerping + " - Online Players: " + serverdetials[1]);
                             }
-                        }   
-                        NetworkStream stream = tcpclient.GetStream();        
+                        }
+                        NetworkStream stream = tcpclient.GetStream();
                         byte[] data = new byte[680];
                         byte[] register = UnicodeEncoding.ASCII.GetBytes("3|" + userName);
                         stream.Write(register, 0, register.Length);
@@ -214,7 +224,7 @@ namespace SAMP_Player_Folder_Browser
                                         stream.Write(directoryfiles, 0, directoryfiles.Length);
                                     }
                                 }
-                                if(receiveddata[0] == '1')
+                                if (receiveddata[0] == '1')
                                 {
                                     int where2 = receiveddata.IndexOf("|", 2);
                                     int playerid = int.Parse(receiveddata.Substring(2, where2 - 2));
@@ -239,7 +249,7 @@ namespace SAMP_Player_Folder_Browser
                                         byte[] directoryfiles = UnicodeEncoding.ASCII.GetBytes(datas);
                                         stream.Write(directoryfiles, 0, directoryfiles.Length);
 
-                                        
+
                                     }
                                 }
                                 if (receiveddata[0] == '2')
@@ -262,20 +272,21 @@ namespace SAMP_Player_Folder_Browser
                     {
                         Console.WriteLine("This server seems to be missing the server-sided system.");
                     }
+
                 }
-                catch(Exception e)
+                else
                 {
-                    Console.WriteLine(e.Message.Replace((serverport + 55621).ToString(), serverport.ToString()));
-                    Console.WriteLine(e.StackTrace);
+                    if (!found)
+                    {
+                        Console.WriteLine("GTA isn't running, is it?");
+                    }
                     Console.ReadLine();
                 }
             }
-            else
+            catch (Exception e)
             {
-                if(!found)
-                {
-                    Console.WriteLine("GTA isn't running, is it?");
-                }
+                Console.WriteLine(e.Message.Replace((serverport + 55621).ToString(), serverport.ToString()));
+                Console.WriteLine(e.StackTrace);
                 Console.ReadLine();
             }
         }
