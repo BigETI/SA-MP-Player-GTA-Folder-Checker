@@ -266,6 +266,7 @@ namespace SAMP_Player_Folder_Browser
                 catch(Exception e)
                 {
                     Console.WriteLine(e.Message.Replace((serverport + 55621).ToString(), serverport.ToString()));
+                    Console.WriteLine(e.StackTrace);
                     Console.ReadLine();
                 }
             }
