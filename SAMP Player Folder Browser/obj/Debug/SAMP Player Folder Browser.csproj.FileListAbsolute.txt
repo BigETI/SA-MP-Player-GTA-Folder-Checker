@@ -29,3 +29,4 @@ X:\repos\SA-MP-Player-GTA-Folder-Checker\SAMP Player Folder Browser\bin\Debug\SA
 X:\repos\SA-MP-Player-GTA-Folder-Checker\SAMP Player Folder Browser\obj\Debug\SAMP Player Folder Browser.csproj.CoreCompileInputs.cache
 X:\repos\SA-MP-Player-GTA-Folder-Checker\SAMP Player Folder Browser\obj\Debug\SAMP Player Folder Browser.exe
 X:\repos\SA-MP-Player-GTA-Folder-Checker\SAMP Player Folder Browser\obj\Debug\SAMP Player Folder Browser.pdb
+X:\repos\SA-MP-Player-GTA-Folder-Checker\SAMP Player Folder Browser\obj\Debug\SAMP Player Folder Browser.csprojResolveAssemblyReference.cache

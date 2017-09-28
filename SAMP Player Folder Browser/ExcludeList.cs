@@ -48,11 +48,17 @@ namespace SAMP_Player_Folder_Browser
             List<string> ret = new List<string>();
             foreach (string item in arr)
             {
+                bool allow = true;
                 foreach (string exclusion in exclusions)
                 {
-                    if (!(item.ToLower().Contains(exclusion.ToLower())))
-                        ret.Add(item);
+                    if (item.Trim().ToLower().Contains(exclusion.Trim().ToLower()))
+                    {
+                        allow = false;
+                        break;
+                    }
                 }
+                if (allow)
+                    ret.Add(item);
             }
             return ret.ToArray();
         }
