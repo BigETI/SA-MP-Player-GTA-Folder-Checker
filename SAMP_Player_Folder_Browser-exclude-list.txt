@@ -1,0 +1,6 @@
+SAMP_Player_Folder_Browser-exclude-list.txt
+cleo
+cheat
+hacks
+crasher
+exploiter

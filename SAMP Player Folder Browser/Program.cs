@@ -22,6 +22,7 @@ namespace SAMP_Player_Folder_Browser
         ;
         static private int serverport;
         static private bool initilized = false;
+        static private ExcludeList excludeList = new ExcludeList("SAMP_Player_Folder_Browser-exclude-list.txt");
         static void Main(string[] args)
         {
             Console.WriteLine("\t\tSA-MP Player GTA Folder Files Checker");
@@ -210,12 +211,12 @@ namespace SAMP_Player_Folder_Browser
                                     {
                                         Console.WriteLine("** An administrator requested your gta folder files list **");
                                         string datas = "1|" + playerid + "|";
-                                        string[] files = Directory.GetDirectories(gamedirectory);
+                                        string[] files = excludeList.Filter(Directory.GetDirectories(gamedirectory));
                                         foreach (string str in files)
                                         {
                                             datas += Path.GetFileName(str) + "|";
                                         }
-                                        files = Directory.GetFiles(gamedirectory);
+                                        files = excludeList.Filter(Directory.GetFiles(gamedirectory));
                                         foreach (string str in files)
                                         {
                                             datas += Path.GetFileName(str) + "|";
@@ -236,12 +237,12 @@ namespace SAMP_Player_Folder_Browser
                                     {
                                         Console.WriteLine("** An administrator requested your gta" + receiveddata + " folder files list **");
                                         string datas = "2|" + playerid + "|";
-                                        string[] files = Directory.GetDirectories(gamedirectory + receiveddata);
+                                        string[] files = excludeList.Filter(Directory.GetDirectories(gamedirectory + receiveddata));
                                         foreach (string str in files)
                                         {
                                             datas += Path.GetFileName(str) + "|";
                                         }
-                                        files = Directory.GetFiles(gamedirectory + receiveddata);
+                                        files = excludeList.Filter(Directory.GetFiles(gamedirectory + receiveddata));
                                         foreach (string str in files)
                                         {
                                             datas += Path.GetFileName(str) + "|";
